@@ -17,18 +17,18 @@ $ git cherry-pick COMMIT_SHA
 ### Compare file in multiple branches
 
 ```sh
-$ git diff <b1> <b2> -- myfile.pog
+$ git diff <b> <b> -- myfile.pog
 ```
 [Source](https://stackoverflow.com/questions/4099742/how-to-compare-files-from-two-different-branches)
 
 ### Delete local branch
 
-```
+```sh
 git branch -D <branch>
 ```
 
 ### Update deletion of local branch on remote
 
-```
+```sh
 git push <remote-name> :<branch>
 ```
