@@ -1,0 +1,22 @@
+#!/bin/bash
+
+location=$(pwd)
+read -p "Enter your python command e.g. 'python3' or 'python' or 'python3.9': " py_cmd
+cat << EOF >> gcheat
+#!/bin/bash
+
+${py_cmd} ${location}/gcheat.py ${location}/README.md
+EOF
+
+read -p "Enter your filepath to store command e.g. [/usr/local/bin]': " store_cmd_location
+
+mv gcheat ${store_cmd_location}/gcheat
+chmod +x ${store_cmd_location}/gcheat
+
+if [[ $? == 0 ]] ; then
+    echo "Success!! Use the command \`gcheat\` to use."
+    exit 0
+else
+    echo "Error!! If you can't figure it out please report an issue!"
+    exit 1
+fi
