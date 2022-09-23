@@ -64,7 +64,7 @@ code_themes = [
 ]
 
 def get_content(no_newlines=False):
-    with open(README_PATH) as f:
+    with open(README_PATH, 'r', errors='replace') as f:
         lines = f.readlines()
     if no_newlines:
         old_lines = lines
