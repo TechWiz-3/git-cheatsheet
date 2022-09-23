@@ -7,7 +7,7 @@ For those without Python installed, you can use a binary from the [GitHub Action
 3. Unzip/extract the file
 4. Now clone the repo `git clone https://github.com/TechWiz-3/git-cheatsheet.git`
 5. Move the extracted binary into the git repo (ensure it is named `gcheat_binary`)
-6. Now run `cd git-cheasheet && bash install-binary`
+6. Now run `cd git-cheasheet && sudo bash install-binary`
 7. Cd out of the git repo and use the command `gcheat`
 8. If an issue occurs, please report it :pray:
 9. Enjoy!
