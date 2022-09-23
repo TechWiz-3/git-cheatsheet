@@ -2,16 +2,7 @@
 
 Just my own git commands reference for personal use.  
 
-**Install CLI tool (requires python)**  
-```sh
-git clone https://github.com/TechWiz-3/git-cheatsheet && cd git-cheatsheet
-bash install
-```
-
-**Use**  
-```
-gcheat
-```
+Install the CLI tool (with or without Python) [here](./INSTALL.md). Seriously, do it! It's super useful.
 
 ## Branch stuff
 
