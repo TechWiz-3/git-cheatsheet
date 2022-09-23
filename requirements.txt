@@ -1,2 +1,2 @@
 rich
-simple_term_menu
+simple-term-menu
