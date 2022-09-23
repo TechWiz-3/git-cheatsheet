@@ -10,7 +10,7 @@ jobs:
     - name: Build Python Binary
       uses: eric2788/pyinstaller-build@master
       with:
-        main: "gcheat.py"
+        main: "gcheat"
         artifact: gcheat_binary
         use-dependencies: false
     - name: Upload Artifact
@@ -26,7 +26,7 @@ jobs:
       - name: Build Python Exe
         uses: eric2788/pyinstaller-build@master
         with:
-          main: "gcheat.py"
+          main: "gcheat"
           artifact: gcheat_binary
           use-dependencies: false
       - name: Upload Artifact
