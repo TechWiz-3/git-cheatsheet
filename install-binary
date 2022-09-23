@@ -1,11 +1,12 @@
 #!/bin/bash
 
+echo "Please download you chosen binary from the 'Artifacts' section of the latest run in the 
+'Actions' tab of the repo!\nThen ensure that the binary has been moved to the git cloned directory and is named 'gcheat_binary'!"
 location=$(pwd)
-read -p "Enter your python command e.g. 'python3' or 'python' or 'python3.9': " py_cmd
+chmod +x gcheat
 cat << EOF >> gcheat
 #!/bin/bash
-
-${py_cmd} ${location}/gcheat.py ${location}/README.md
+${location}/gcheat_binary ${location}/README.md
 EOF
 
 read -p "Enter your filepath to store command e.g. [/usr/local/bin]': " store_cmd_location
