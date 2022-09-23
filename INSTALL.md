@@ -15,6 +15,7 @@ For those without Python installed, you can use a binary from the [GitHub Action
 ## Python Installation
 ```sh
 git clone https://github.com/TechWiz-3/git-cheatsheet && cd git-cheatsheet
+pip install rich
 bash install
 ```
 
