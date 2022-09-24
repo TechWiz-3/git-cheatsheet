@@ -19,7 +19,6 @@ else:
     from basic_menu import BasicMenu
     WINDOWS = False
 
-WINDOWS = True
 console = Console()
 
 README_PATH = sys.argv[-1]
