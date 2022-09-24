@@ -37,7 +37,7 @@ def get_sub_options(main_heading) -> list:
     lines = lines[line_index:]
     for i, l in enumerate(lines):
         # get h3 i.e. '###' headings
-        if l.startswith("## ") and i != 0:
+        if l.startswith("## ") and i != 0 or l.startswith("# "):
             break
         if l.startswith("### "):
             l = l.replace("\n", "")
