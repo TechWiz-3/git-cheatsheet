@@ -6,16 +6,29 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.markdown import Markdown
 
-from simple_term_menu import TerminalMenu
 import sys
 import os.path
+import os
+from time import sleep
 
+
+if os.name == "nt":  # windows
+    WINDOWS = True
+    from simple_term_menu import TerminalMenu
+else:
+    from basic_menu import BasicMenu
+    WINDOWS = False
+
+WINDOWS = True
 console = Console()
 
 README_PATH = sys.argv[-1]
+if ".py" in README_PATH:
+    print("Remember to include the README path as an arguement")
+    sys.exit(1)
 if not os.path.exists(README_PATH):
     print("Please specify the file location of the git-cheatsheet README file as an arguement!")
-    sys.exit()
+    sys.exit(1)
 
 
 def get_main_options() ->  list:
@@ -48,14 +61,31 @@ def get_sub_options(main_heading) -> list:
 
 def render_main_menu():
     choices = get_main_options()
-    main_menu = TerminalMenu(choices, title="Git topics:")
-    result = main_menu.show()
+    if WINDOWS:
+        console.print("[bold]Git topics:[/bold]")
+        main_menu = BasicMenu(choices)
+        result = main_menu.BuildMenu()
+        print("")
+        sleep(0.5)
+        console.print("[bold]Available info:[/bold]")
+        sub_choices = get_sub_options(result)
+        sub_menu = BasicMenu(sub_choices)
+        sub_result = sub_menu.BuildMenu()
+        sleep(0.5)
+        print_data(target=sub_result)
+    else:
+        try:
+            main_menu = TerminalMenu(choices, title="Git topics:")
+            result = main_menu.show()
 
-    sub_choices = get_sub_options(choices[result])
-    sub_menu = TerminalMenu(sub_choices, title="Available info:")
-    sub_result = sub_menu.show()
+            sub_choices = get_sub_options(choices[result])
+            sub_menu = TerminalMenu(sub_choices, title="Available info:")
+            sub_result = sub_menu.show()
 
-    print_data(target=sub_choices[sub_result])
+            print_data(target=sub_choices[sub_result])
+        except:
+            # import error since simple_term_menu doesn't support windows
+            pass
 
 
 code_themes = [
@@ -72,12 +102,6 @@ def get_content(no_newlines=False):
         for l in old_lines:
             l = l.replace("\n", "")
             lines.append(l)
-            #for i in range(1,6):
-            #    header = "#"*i
-            #    if l.startswith(f"{header} "):
-            #        l = l.replace(f"{header} ", "")
-            #no_heading_lines.append(l)
-        #return no_heading_lines
     return lines
 
 
