@@ -14,9 +14,9 @@ from time import sleep
 
 if os.name == "nt":  # windows
     WINDOWS = True
-    from simple_term_menu import TerminalMenu
-else:
     from basic_menu import BasicMenu
+else:
+    from simple_term_menu import TerminalMenu
     WINDOWS = False
 
 console = Console()
@@ -49,7 +49,7 @@ def get_sub_options(main_heading) -> list:
     lines = lines[line_index:]
     for i, l in enumerate(lines):
         # get h3 i.e. '###' headings
-        if l.startswith("## ") and i != 0 or l.startswith("# "):
+        if l.startswith("## ") and i != 0:
             break
         if l.startswith("### "):
             l = l.replace("\n", "")
@@ -82,6 +82,7 @@ def render_main_menu():
             sub_result = sub_menu.show()
 
             print_data(target=sub_choices[sub_result])
+
         except:
             # import error since simple_term_menu doesn't support windows
             pass
@@ -117,6 +118,8 @@ def print_data(target):
     lines = lines[heading_line_no:]
     good_lines = ""
     for i, l in enumerate(lines):
+        if l.startswith("## "):
+            break
         if l.startswith("###"):
             l = l.replace("###", "##")  # make the heading h2
             if i != 0:  # the next command has been detected
