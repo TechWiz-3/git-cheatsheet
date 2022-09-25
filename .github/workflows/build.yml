@@ -1,0 +1,64 @@
+name: Build Python Binaries
+
+on: [push]
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Build Python Binary
+      uses: eric2788/pyinstaller-build@master
+      with:
+        main: "gcheat"
+        artifact: gcheat_binary
+        use-dependencies: true
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: gcheat_linux
+        path: dist
+
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Python Exe
+        uses: eric2788/pyinstaller-build@master
+        with:
+          main: "gcheat"
+          artifact: gcheat_binary
+          use-dependencies: true
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: gcheat_windows
+          path: dist
+
+  build_macos:
+    runs-on: macos-latest
+    steps:
+      # Check-out repository
+      - uses: actions/checkout@v3
+      # Setup Python
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+      - name: Build Python Binary
+        shell: bash
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+          pyinstaller --clean -y --name gcheat_binary --onefile "gcheat.py"
+          chmod 770 "./dist"
+      # Uploads artifact
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: gcheat_macos
+          path: dist

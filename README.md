@@ -2,23 +2,14 @@
 
 Just my own git commands reference for personal use.  
 
-**Install CLI tool (requires python)**  
-```sh
-git clone https://github.com/TechWiz-3/git-cheatsheet && cd git-cheatsheet
-bash install
-```
-
-**Use**  
-```
-gcheat
-```
+Install the CLI tool (with or without Python) [here](./INSTALL.md). Seriously, do it! It's super useful. Supports Windows!  
 
 ## Branch stuff
 
 ### Change file in multiple branches
 
 ```sh
-git log  # get commit SHA
+git log  # get commit SHA [make sure it's the right one]
 git checkout <branch>
 git cherry-pick COMMIT_SHA
 ```
@@ -72,6 +63,16 @@ git pull
 " * [test branch]      test_branch -> origin/test_branch"
 git checkout <branch-name>
 ```
+
+### Remove branch that was deleted on remote
+
+```sh
+# ensure you are not checked out on the branch you wish to delete
+git branch --merged >/tmp/merged-branches && \
+  vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches
+# select the ones to delete with an astericks, press your I key to insert. Escape key when you're done. `:wq` to finish!
+```
+[Source](https://stackoverflow.com/questions/7726949/remove-tracking-branches-no-longer-on-remote)
 
 ## Terminology
 
