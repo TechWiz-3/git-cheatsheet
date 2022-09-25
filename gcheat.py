@@ -12,7 +12,7 @@ import os
 from time import sleep
 
 
-if os.name == "nt":  # windows
+if os.name == "nt" or "--windows-test" in sys.argv:  # windows
     WINDOWS = True
     from basic_menu import BasicMenu
 else:
