@@ -12,6 +12,14 @@ For those without Python installed, you can use a binary from the [GitHub Action
 8. If an issue occurs, please report it :pray:
 9. Enjoy!
 
+### On Windows with no access to Bash
+**Logic:**
+Basically since you can't do step 6, you will need to ensure that whenever `gcheat_binary.exe` is invoked, the path to the repo's `README.md` is the last arguement.  
+That might look something like this So `gcheat_binary.exe git-cheatsheet/README.md`  
+Preferably, the `gcheat_binary` can be accessed from anywhere, and the `README.md` argument is passed in automatically.  
+
+A smart way to do it would be, (after moving the binary to the git cloned repo), adding the repo to the command prompt/terminal's path and then aliasing gcheat to `\path\gcheat_binary.exe \path\README.md`.  
+
 ## Python Installation
 ```sh
 git clone https://github.com/TechWiz-3/git-cheatsheet && cd git-cheatsheet
